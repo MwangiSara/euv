@@ -22,21 +22,21 @@ const app = Vue.createApp(
                     author : 'Brandon Sandason 1',
                     age: '50',
                     img: 'assets/bed1.jpg',
-                    isfav: true
+                    isfav: 0
                 },
     
                     {Title :'The way of kings', //dynamic change able value
                     author : 'Brandon Sandason 11',
                     age: '50',
                     img: 'assets/bed3.jpg',
-                    isfav: true
+                    isfav: 1
                 },
     
                     {Title :'The Final empire', //dynamic change able value
                     author : 'Brandon Sandason 111',
                     age: '50',
                     img: 'assets/bed2.jpg',
-                    isfav: false
+                    isfav: 0
                 },
                 ]
             }
@@ -60,6 +60,12 @@ const app = Vue.createApp(
             },
             changefav(book){
                 book.isfav =! book.isfav
+            }
+        },
+        computed: {
+            // Computed properties are updated automatically when a dependency changes, while methods are called on when something happens, like with event handling for example. Computed properties are used when outputting something that depends on something else.
+            filteredBooks(){
+                return this.books.filter((book) => book.isfav) //. A Vue.js filter is essentially a function that takes a value, processes it, and then returns the processed value. 
             }
         }
     }

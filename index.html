@@ -56,7 +56,8 @@
             <p>{{ age }}</p>  
 
         <ul>
-            
+            <!-- looping through books -->
+            <h5>looping through books</h5>
             <li v-for="book in books"  :class="{fav: book.isfav}" @click="changefav(book)" >
                 
                     <img v-bind:src="book.img" :alt="book.Title">
@@ -64,8 +65,17 @@
                     <p>{{book.author}} - {{book.age}}</p>
                 </div>
             </li>
+
+            <!-- looping through filterd books  -->
+            <h5>looping through  filterd books</h5>
+            <li v-for="book in filteredBooks"  :class="{fav: book.isfav}" @click="changefav(book)" >
+                
+                <img v-bind:src="book.img" :alt="book.Title">
+                <h3>{{book.Title}}</h3>
+                <p>{{book.author}} - {{book.age}}</p>
+            
+        </li>
         </ul>
-        </div>
      
        <button>incease age</button> &nbsp;
        <button v-on:click="age--">decrease age</button>  
@@ -79,19 +89,23 @@
 
        <div v-show="showbooks">currently showing</div>
 
-<!-- mouse events -->
+        <!-- mouse events -->
         <div class="box" @mouseover="handleEvent($event,5)">mouseover</div>
         <div class="box" @mouseleave="handleEvent">mouseleave</div>
         <div class="box" @dblclick="handleEvent">doubleclick</div>
         <div class="box" @mousemove="mousemovehandler">positions {{x}}-{{y}}</div>
 
 
- <!-- v-for -->
+        <!-- v-for -->
+       
 
         <p>{{books[0].Title}} - {{books[0].author}} - {{books[0].age}}</p>  
 
-<!-- attribute binding (v-bind or : )-->
+        <!-- attribute binding (v-bind or : )-->
        <a v-bind:href="url">google</a>
+
+            <!-- computed property: filter prints an array -->
+       <p>{{ filteredBooks }}</p>
        
     </div>
 
