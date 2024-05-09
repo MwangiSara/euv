@@ -1,6 +1,6 @@
 <template>
-    <div class="backdrop">
-        <div class="modal">
+    <div class="backdrop" @click="closeModal">
+        <div class="modal" :class="{ sale_class: theme === 'sale'}">
             <h1>{{header}}</h1>
             <p>{{ text }}</p>
             <p>{{ text2 }}</p>
@@ -10,7 +10,12 @@
 
 <script>
     export default {
-        props: ['header','text','text2'] //elements have to be in a string
+        props: ['header','text','text2','theme'], //elements have to be in a string
+        methods: {
+            closeModal(){
+                
+            }
+        }
     }
     // export default is a way to expose a single component from a .vue file for use in other parts of your application. It's a fundamental concept for building reusable UI elements.
 </script>
@@ -38,5 +43,12 @@
     }
     .modal p{
         font-style: normal;
+    }
+    .sale_class{
+        background: crimson;
+        color: white;
+    }
+    .sale_class h1{
+        color: white;
     }
 </style>
