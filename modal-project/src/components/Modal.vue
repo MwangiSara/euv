@@ -1,11 +1,19 @@
 <template>
     <div class="backdrop">
         <div class="modal">
-            <h1>Modal Header</h1>
-            <p>modal content</p>
+            <h1>{{header}}</h1>
+            <p>{{ text }}</p>
+            <p>{{ text2 }}</p>
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        props: ['header','text','text2'] //elements have to be in a string
+    }
+    // export default is a way to expose a single component from a .vue file for use in other parts of your application. It's a fundamental concept for building reusable UI elements.
+</script>
 
 <style scoped> 
 /* style scoped means that the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes. */

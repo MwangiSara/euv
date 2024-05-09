@@ -1,6 +1,6 @@
-# modal-project
+# modal-project (learning and creating a vue application)
 
-## Project setup
+<!-- ## Project setup
 ```
 npm install
 ```
@@ -16,7 +16,7 @@ npm run build
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [Configuration Reference](https://cli.vuejs.org/config/). -->
 
 # notes
 * node_modules: This folder is crucial, but you don't directly edit its contents. It stores all the external JavaScript libraries and dependencies your project uses. These dependencies are usually installed using npm install or yarn install
@@ -33,4 +33,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * package.json: This file stores metadata about your project, including its name, version, dependencies, and scripts. It's essential for managing dependencies and running build commands.
 
 * The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects; that way, programming languages can interact with the page.
+
+### Props
+* props are custom attributes that you can register on any component. You define your data on the parent component and give it a value. Then, you go to the child component that needs that data and pass the value to a prop attribute. Therefore, the data becomes a property in the child component.
 
