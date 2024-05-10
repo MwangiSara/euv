@@ -14,7 +14,7 @@
         props: ['header','text','text2','theme'], //elements have to be in a string
         methods: {
             closeModal(){
-                this.$emit('')
+                this.$emit('close')
             }
         }
     }

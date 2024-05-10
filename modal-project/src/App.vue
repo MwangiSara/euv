@@ -8,9 +8,9 @@
   <button @click="handleClick">click me</button> 
   <br> <br>
   <div v-if="showModal">
-    <Modal :header="returned_header" text="grap free products!" :text2="['we have used data bind','to get this array']" theme="sale" /> 
+    <Modal :header="returned_header" text="grap free products!" :text2="['we have used data bind','to get this array']" theme="sale" @close="toggleModal" /> 
   </div>
-  <button @click="toggleModal">Open Modal</button>
+  <button @click.alt="toggleModal">Open Modal(alt)</button>
   <!-- for you to get the component and use it as an element, you have to import it first and add it in the components method  -->
   <!-- the header attribute is a prop -->
   <!-- for you to not only pass a string as a prop, you have to use v-bind(or : ) -->

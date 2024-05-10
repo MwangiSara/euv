@@ -71,3 +71,40 @@ See [Configuration Reference](https://cli.vuejs.org/config/). -->
     * Loose Coupling: Components are loosely coupled, as they only need to know the event name and data format, not the internal implementation details of each other.
     * Reusability: Child components can be reused in different contexts by emitting events that parent components can handle in various ways.
     * Modular Communication: Custom events promote a clear separation of concerns, making your application code more maintainable and easier to understand.
+    ```
+        <template>
+            <MyComponent @item-clicked="handleItemClicked" />
+        </template>
+
+        methods: {
+        handleItemClicked(selectedItem) {
+            console.log('Item clicked:', selectedItem);
+            // Perform actions based on the received data
+        }
+        }
+    ```
+
+### click event modifiers
+* click event modifiers are special directives attached to the @click event handler that alter how the event triggers. They provide a concise way to customize click behavior without needing extra logic within your component methods. Here are some commonly used click event modifiers:
+
+    * .prevent: Prevents the default behavior associated with the click event. 
+    * .stop: Stops the event propagation from bubbling up the DOM tree. This can be helpful when you want to handle the click event only on the specific element and not let it trigger on parent elements.
+    * .self: Similar to .stop, but only stops propagation to parent elements with the same event listener.
+    * .once: Ensures the click event handler is only triggered once for the element. This is useful for one-time actions like initializing something on the first click.
+    * Keyboard Modifiers (Vue 2.5+):
+        * .ctrl (or .control): Triggers the event only when the Control key is pressed during the click.
+        * .shift : Triggers the event only when the Shift key is pressed during the click.
+        * .alt (or .option): Triggers the event only when the Alt key (or Option key on macOS) is pressed during the click.
+        * .exact (in combination with other modifiers): Ensures only the specified combination of keys (and no others) is pressed for the event to trigger.
+        ```
+            <button @click.ctrl="handleCtrlClick">Click with Ctrl</button>
+            <button @click.ctrl.shift="handleCtrlShiftClick">Click with Ctrl + Shift</button>
+            <button @click.exact="handleExactClick">Click without any modifiers</button>
+        ```
+    * Mouse Button Modifiers:
+        * .left (or .buttons with a value of 1): Triggers the event only when the left mouse button is clicked.
+        * .middle (or .buttons with a value of 4): Triggers the event only when the middle mouse button is clicked.
+        * .right (or .buttons with a value of 2): Triggers the event only when the right mouse button is clicked. 
+        ```
+            <button @click.right="handleRightClick">Right-click me</button>
+        ```
