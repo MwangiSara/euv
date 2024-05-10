@@ -108,3 +108,39 @@ See [Configuration Reference](https://cli.vuejs.org/config/). -->
         ```
             <button @click.right="handleRightClick">Right-click me</button>
         ```
+
+### Slots
+* Slots in Vue.js are a powerful feature that allows you to create reusable and flexible components. They provide a way for child components to define sections of their template that can be customized by parent components. Here's a breakdown of how slots work:
+
+    * Defining Slots (Child Component): A child component can define one or more slots using the <slot> tag within its template. You can optionally give the slot a name for better organization using the name attribute.
+    ```
+        <template>
+        <div class="card">
+            <header>
+            <slot name="title"></slot>
+            </header>
+            <div class="content">
+            <slot />
+            </div>
+        </div>
+        </template>
+
+    ```
+    * Filling Slots (Parent Component): The parent component can fill the slots defined in the child component by placing content within the child component's template tags where the <slot> elements are located. You can reference named slots using the v-slot directive and providing the slot name.
+    ```
+        <template>
+        <MyCard>
+            <template v-slot:title>This is the card title</template>
+            <p>This is the card content.</p>
+        </MyCard>
+        </template>
+
+    ```
+    * Benefits of Slots:
+
+        * Reusable Components: Child components can be designed to accept content through slots, making them adaptable for various use cases in your application.
+        * Flexibility for Parent Components: Parent components have control over the content that appears within the child component's slots, allowing for customization and dynamic content.
+        * Separation of Concerns: Slots promote a clear separation between the child component's structure and the content that populates it.
+    * Additional Features:
+
+        * Scoped Slots (Vue 2.6+): Allow passing data from the child component to the parent component within the slot content. Slot Props: Enable sending data from the parent component to the child component through the slot itself.
