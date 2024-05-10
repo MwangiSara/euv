@@ -144,3 +144,24 @@ See [Configuration Reference](https://cli.vuejs.org/config/). -->
     * Additional Features:
 
         * Scoped Slots (Vue 2.6+): Allow passing data from the child component to the parent component within the slot content. Slot Props: Enable sending data from the parent component to the child component through the slot itself.
+
+### Teleport component
+*  the Teleport component is a built-in feature that allows you to move content from a component's template to a different location in the DOM tree. It essentially "teleports" the content to a separate part of your webpage. Here's how it works:
+
+    * Using <Teleport>:You wrap the content you want to move with the <Teleport> component.
+        Define the target location using the to prop. This prop takes a CSS selector string that points to the element where you want the content to be inserted.
+    ```
+        <template>
+        <div id="app">
+            <Teleport to="#modal-container">
+            <p>This content will be teleported!</p>
+            </Teleport>
+            <div id="modal-container"></div>
+        </div>
+        </template>
+    ```
+* Benefits of Teleport:
+
+    * Modular UI Elements: Teleport helps create reusable components that can render their content in different parts of the layout, improving modularity.
+    * Complex Layouts: It simplifies the management of complex layouts where content needs to be displayed outside of a component's typical location.
+    * Accessibility: Teleport can be useful for positioning elements like modals or tooltips strategically for better accessibility.

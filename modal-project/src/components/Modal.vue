@@ -8,6 +8,7 @@
             <slot></slot>
             <div class="actions">
                 <slot name="links"></slot>
+                <slot name="more_links"></slot>
             </div>
         </div>
     </div>

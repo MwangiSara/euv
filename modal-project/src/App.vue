@@ -7,7 +7,7 @@
   <!-- Vue Template Refs are used to refer to specific DOM elements. When the ref attribute is set on an HTML tag, the resulting DOM element is added to the $refs object. We can use the ref attribute and the $refs object in Vue as an alternative to methods in plain JavaScript like getElementById() or querySelector(). -->
   <button @click="handleClick">click me</button> 
   <br> <br>
-  <div v-if="showModal">
+  <Teleport to=".modals" v-if="showModal">
     <Modal :header="returned_header" text="grap free products!" :text2="['we have used data bind','to get this array']" theme="sale" @close="toggleModal">
       <template v-slot:links>
         <a href="#">Sign Up Now</a>
@@ -18,11 +18,28 @@
       </Modal>
 
 
-  </div>
+  </Teleport >
   <button @click.alt="toggleModal">Open Modal(alt)</button>
   <!-- for you to get the component and use it as an element, you have to import it first and add it in the components method  -->
   <!-- the header attribute is a prop -->
   <!-- for you to not only pass a string as a prop, you have to use v-bind(or : ) -->
+
+  <br> <br>
+
+  <Teleport to=".modals" v-if="showModal2">
+    <Modal  @close="toggleModal2">
+      <template v-slot:more_links>
+        <a href="#">Log in Now</a>
+        <a href="#">More Info</a>
+      </template>
+      <h1>another Modal</h1>
+      <p>just trying</p>
+    </Modal>
+
+
+  </Teleport  >
+  <button @click="toggleModal2"> Open Modal 2</button>
+
   
 </template>
 
@@ -37,6 +54,7 @@ export default {
       title: "vue vue!",
       returned_header: "Signup For A Give Away",
       showModal: false,
+      showModal2: false,
     }
   },
   methods: { //methods: Contains functions specific to the component's behavior.
@@ -48,13 +66,16 @@ export default {
     },
     toggleModal(){
       this.showModal = !this.showModal
+    },
+    toggleModal2(){
+      this.showModal2 = !this.showModal2
     }
   }
 }
 </script>
 
 <style>
-#app {
+#app, .modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
