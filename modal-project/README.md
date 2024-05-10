@@ -37,3 +37,37 @@ See [Configuration Reference](https://cli.vuejs.org/config/). -->
 ### Props
 * props are custom attributes that you can register on any component. You define your data on the parent component and give it a value. Then, you go to the child component that needs that data and pass the value to a prop attribute. Therefore, the data becomes a property in the child component.
 
+### custom events 
+* custom events are a communication mechanism between components, allowing child components to trigger actions or notify parent components about specific events. Here's a breakdown of how custom events work:
+
+    * Emitting Events (Child Component): A child component can emit a custom event using the $emit method. This method takes two arguments: 
+        * Event Name: A string representing the name of the event being emitted.
+        * Data (Optional): Any data you want to pass along with the event (e.g., payload).
+
+        ```
+            <template>
+                <button @click="$emit('itemClicked', selectedItem)">Click Me</button>
+            </template>
+
+            export default {
+            data() {
+                return {
+                selectedItem: null
+                }
+            },
+            methods: {
+                // ... other methods
+                handleClick(item) {
+                this.selectedItem = item;
+                this.$emit('itemClicked', this.selectedItem);
+                }
+            }
+            }
+        ```
+
+    * Listening for Events (Parent Component): A parent component can listen for custom events emitted by its child using the v-on directive with a kebab-cased version of the event name.
+* Benefits of Custom Events:
+
+    * Loose Coupling: Components are loosely coupled, as they only need to know the event name and data format, not the internal implementation details of each other.
+    * Reusability: Child components can be reused in different contexts by emitting events that parent components can handle in various ways.
+    * Modular Communication: Custom events promote a clear separation of concerns, making your application code more maintainable and easier to understand.

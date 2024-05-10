@@ -1,5 +1,6 @@
 <template>
-    <div class="backdrop" @click="closeModal">
+    <div class="backdrop" @click.self="closeModal">
+        <!-- when you add self on @click, it means that when we click on the div(backdrop) will it fire the function, and not the inner divs -->
         <div class="modal" :class="{ sale_class: theme === 'sale'}">
             <h1>{{header}}</h1>
             <p>{{ text }}</p>
@@ -13,7 +14,7 @@
         props: ['header','text','text2','theme'], //elements have to be in a string
         methods: {
             closeModal(){
-                
+                this.$emit('')
             }
         }
     }
