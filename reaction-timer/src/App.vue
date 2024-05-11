@@ -9,9 +9,17 @@
 export default {
   name: 'App',
   components: { },
+  data(){
+    return{
+      isPlaying: true,
+      delat: null
+    }
+  },
   methods: { 
     start(){
-      
+      this.delay = 2000 + Math.random() * 5000
+      this.isPlaying = true
+      console.log(this.delay)
     }
   }
 }
