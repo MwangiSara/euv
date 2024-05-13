@@ -5,9 +5,34 @@
 
     <label for="">Password: </label>
     <input type="password" v-model="password" name="" id="" required>
+
+    <label for="">Role: </label>
+    <select v-model="role">
+        <option value="developer">Web Developer</option>
+        <option value="designer">Web Designer</option>
+    </select>
+
+    <div class="terms">
+        <input type="checkbox" v-model="terms" name="" id="">
+        <label for="">Accept Terms And Conditions</label>
+    </div>
+
+    <!-- <div >
+        <input type="checkbox" value="Jane" v-model="names" name="" id="">
+        <label for="">Jane</label>
+    </div>
+
+    <div >
+        <input type="checkbox" value="Doe" v-model="names" name="" id="">
+        <label for="">Doe</label>
+    </div> -->
   </form>
   <p>Email: {{ email }}</p>
   <p>Password: {{ password }}</p>
+  <p>Role: {{ role }}</p>
+  <p>Role: {{ terms }}</p>
+  <!-- <p>Role: {{ names }}</p> -->
+
 </template>
 
 <script>
@@ -16,6 +41,9 @@ export default {
         return{
             email : '',
             password: '',
+            role: 'designer',
+            terms: false,
+            // names: []
         }
     }
 
@@ -42,7 +70,7 @@ label{
     letter-spacing: 1px;
     font-weight: bold 
 }
-input{
+input, select{
     display: block;
     padding: 10px 6px;
     width: 100%;
@@ -50,5 +78,12 @@ input{
     border: none;
     border-bottom: 1px solid #ddd;
     color: #555;
+}
+input[type="checkbox"] {
+    display: inline-block;
+    width: 11px;
+    margin: 0 10px 0 0;
+    position: relative;
+    top: 2px;
 }
 </style>
