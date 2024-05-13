@@ -98,7 +98,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/). -->
 
     ![lifecycle hooks](lifecycle.MuZLBFAS.png)
 
-* setTimeout in Vue.js can be used for asynchronous operations or for scheduling tasks to be executed after a delay, just like in regular JavaScript.
+* setTimeout in Vue.js can be used for asynchronous operations or for scheduling tasks to be executed after a delay, just like in regular JavaScript. To cancel the timeout, you can use clearTimeout
 
 ```
     <template>
@@ -124,4 +124,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/). -->
 
 ```
 
-
+* setInterval is used to execute code repeatedly at specified intervals until stopped. To stop the interval, you can use clearInterval. Useful for tasks that need to be repeated at regular intervals, such as animations, updating live data, or periodic checks.
+```
+    let intervalId = setInterval(() => {
+  console.log("This will be executed every 1000 milliseconds");
+    }, 1000);
+```
