@@ -18,6 +18,9 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/). -->
 
+* A small Vue.js game that tests a players speed by clicking a box as fast as possible and outputing their speed. key properties in vue.js that I have learnt while making theis project are:
+
+### export defaults
 * export default acts as a container that encapsulates everything that makes up your reusable Vue component, allowing you to share it throughout your application.
     * Data (Optional): This section holds the initial data that the component will use. It can be an object     containing properties that define the component's state.
     ```
