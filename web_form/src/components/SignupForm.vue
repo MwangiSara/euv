@@ -12,6 +12,13 @@
         <option value="designer">Web Designer</option>
     </select>
 
+    <label for="">Role: </label>
+    <input type="text" name="" id="" v-model="tempSkill" @keyup.alt="addskill"> <!-- alt in keyup is used to remove the coma from being seen -->
+
+    <div v-for="skill in skills" :key="skill" class="pill" >
+       <span @click="removeSkill(skill)"> {{ skill }} </span>
+    </div>
+
     <div class="terms">
         <input type="checkbox" v-model="terms" name="" id="">
         <label for="">Accept Terms And Conditions</label>
@@ -44,9 +51,25 @@ export default {
             role: 'designer',
             terms: false,
             // names: []
+            tempSkill: '',
+            skills: []
         }
+    },
+    methods: {
+        addskill(e){
+            // console.log(e) //used for printing the keys pressed in keyboard
+            if (e.key === ',' && this.tempSkill){
+                if(!this.skills.includes(this.tempSkill)){ //if the skill is already in tempSkill then dont add it
+                    this.skills.push(this.tempSkill) //pushing the skills to tempSkill
+                }
+                this.tempSkill = ''
+            }
+        },
+        removeSkill(skill){
+            console.log(skill)
+            this.skills = this.skills.filter(id => id !== skill);
+        },
     }
-
 }
 </script>
 
@@ -85,5 +108,16 @@ input[type="checkbox"] {
     margin: 0 10px 0 0;
     position: relative;
     top: 2px;
+}
+.pill{
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #777;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 </style>
