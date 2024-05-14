@@ -1,10 +1,14 @@
 <template>
-  <form action="">
+  <form  @submit.prevent="handelSubmit">
+    <!-- @submit: This is an event directive in Vue.js that listens for the submit event on an element, typically a <form> element. -->
+        <!-- .prevent: This is a modifier attached to the submit event. It instructs Vue.js to prevent the default behavior of the form submission. -->
+        <!-- .passive: Indicates to the browser that the event handler does not actively prevent default behavior or call event.preventDefault(). This can improve performance in some scenarios. -->
     <label for="">Email: </label>
     <input type="email" v-model="email" name="" id="" required>
 
     <label for="">Password: </label>
     <input type="password" v-model="password" name="" id="" required>
+    <div class="error" v-if="passwordError">{{ passwordError }}</div>
 
     <label for="">Role: </label>
     <select v-model="role">
@@ -22,6 +26,10 @@
     <div class="terms">
         <input type="checkbox" v-model="terms" name="" id="">
         <label for="">Accept Terms And Conditions</label>
+    </div>
+
+    <div class="submit">
+        <button >Sign Up</button>
     </div>
 
     <!-- <div >
@@ -52,7 +60,8 @@ export default {
             terms: false,
             // names: []
             tempSkill: '',
-            skills: []
+            skills: [],
+            passwordError: ''
         }
     },
     methods: {
@@ -68,6 +77,17 @@ export default {
         removeSkill(skill){
             console.log(skill)
             this.skills = this.skills.filter(id => id !== skill);
+        },
+        handelSubmit(){
+            this.passwordError = this.password.length > 5 ? '' : 'password should be more than 5 Characters'
+            if(!this.passwordError){
+                console.log('email: ',this.email)
+                console.log('password: ',this.password)
+                console.log('role: ',this.role)
+                console.log('skills: ',this.skills)
+                console.log('terms: ',this.terms)
+
+            }
         },
     }
 }
@@ -119,5 +139,22 @@ input[type="checkbox"] {
     color: #777;
     cursor: pointer;
     text-transform: uppercase;
+}
+button{
+    background: #0b6dff;
+    border: 0;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+}
+.submit{
+    text-align: center;
+}
+.error{
+    color: #ff0062;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 </style>
