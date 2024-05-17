@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import About from '../views/AboutView.vue'
+import NotFound from '../views/NotFound.vue'
 import Jobs from '../views/jobs/Jobs.vue'
 import JobDetails from '@/views/jobs/JobDetails.vue'
 
@@ -31,6 +32,13 @@ const routes = [
   {
     path: '/all-jobs',
     redirect: '/jobs'
+  },
+  // catchAll 404
+  {
+    path: '/:catchAll(.*)',
+    //(.*): This is the important part. The asterisk (*) acts as a wildcard, matching any characters or sequence of characters in the URL path.
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
