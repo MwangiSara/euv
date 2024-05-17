@@ -73,3 +73,45 @@ export default {
 </script>
 
 ```
+
+## Dynamic Routing
+* Dynamic routing in Vue.js with Vue Router allows you to create flexible navigation links and views that adapt based on data or user interactions. Dynamic routing adds a layer of flexibility by letting you construct routes based on values or expressions at runtime.
+* :to: This attribute is used for dynamic routing, allowing you to specify the target route based on data or expressions.
+* Vue Router provides features to achieve dynamic routing:
+  1. Route Parameters: You can define route paths with placeholders using colons (:paramName). These placeholders will be replaced with values extracted from the URL during navigation.
+  ```
+  // Router configuration
+  const routes = [
+    { path: '/jobs/:id', component: JobDetailsView },
+  ];
+
+  ```
+  2.to Prop with Object: The <router-link> component's :to prop can accept an object for dynamic routing. You can specify the target route name and parameters within this object.
+  ```
+  <template>
+  <router-link :to="{ name: 'JobDetails', params: { id: job.id }}">
+    Job Details
+  </router-link>
+  </template>
+
+  <script>
+  export default {
+    data() {
+      return {
+        job: { id: 123 },
+      }
+    }
+  }
+  </script>
+  ``` 
+  3. Accessing Parameters: Within your route component, you can access the dynamic parameters using the $route.params object.
+  ```
+  <template>
+  <div>Viewing Job Details for: {{ $route.params.id }}</div>
+  </template>
+
+  <script>
+  export default {
+    // ...
+  }
+  ```

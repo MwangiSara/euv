@@ -1,6 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
+    <!-- <router-link>: This is a core component provided by Vue Router. It is used to create clickable links that navigate between different routes in your application. -->
     <router-link :to="{ name : 'about'}">About</router-link> |
     <router-link :to="{ name : 'jobs'}">Jobs</router-link> 
   </nav>
