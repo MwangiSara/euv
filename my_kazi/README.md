@@ -115,3 +115,20 @@ export default {
     // ...
   }
   ```
+## programmatic navigation
+* allows you to navigate between routes within your application using JavaScript code instead of relying solely on user interaction with <router-link> components
+* You can trigger navigation based on user actions, events, or application logic.
+* You can conditionally navigate to specific routes based on certain conditions within your components. You have more control over the navigation flow of your application.
+* Vue Router provides several methods for programmatic navigation:
+  1. router.push(path): This method pushes a new entry onto the history stack, allowing users to navigate back using the browser's back button.
+  ```
+    this.$router.push('/about'); // Navigate to the about route
+  ```
+  2. router.replace(path): This method replaces the current history entry with the new route.
+  ```
+  this.$router.replace('/login'); // Replace current route with login
+  ```
+  3. router.go(n): This method navigates forward or backward in the history stack based on the provided integer argument n. Positive values (e.g., 1) move forward in history (similar to clicking the browser's forward button). Negative values (e.g., -1) move backward in history (similar to the back button).
+  ```
+    this.$router.go(1); // Navigate one step forward in history
+  ```
