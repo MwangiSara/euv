@@ -132,3 +132,22 @@ export default {
   ```
     this.$router.go(1); // Navigate one step forward in history
   ```
+
+### Json Server
+* JSON Server is a lightweight Node.js module that simulates a RESTful API using a JSON file as its data source.
+* Here's a basic example of how JSON Server works:
+    1. Create a JSON File: You define the data structure for your API in a JSON file (e.g., db.json). This file holds the initial data for your mock API.
+    2. Run JSON Server: You use the json-server command along with the path to your JSON data file to start the JSON Server.
+    3. API Interaction: Your front-end code can then interact with the JSON Server using standard HTTP methods (GET, POST, PUT, DELETE) to simulate API calls. JSON Server automatically handles these requests based on the data in your JSON file.
+* Here are some key characteristics of JSON Server:
+
+    * Simplicity: It's easy to set up and use, requiring minimal configuration.
+    * Flexibility: It allows you to define your API data structure using a simple JSON file.
+    * CRUD Operations: It supports basic CRUD (Create, Read, Update, Delete) operations on the data stored in the JSON file.
+    * Automatic Routes: Based on the structure of your JSON data, JSON Server automatically generates routes for interacting with the data.
+    * Fast Development: It provides a quick way to mock an API without needing a complex backend server setup, allowing front-end developers to focus on building the user interface and application logic.
+* While JSON Server is a valuable tool, it's important to consider its limitations:
+
+    * Limited Functionality: It cannot handle complex functionalities typically found in real backend APIs.
+    * Security Concerns: It's not intended for production use due to security limitations.
+    * Scalability Issues: It's not suitable for large datasets or high-traffic applications.
