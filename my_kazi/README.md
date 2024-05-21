@@ -151,3 +151,47 @@ export default {
     * Limited Functionality: It cannot handle complex functionalities typically found in real backend APIs.
     * Security Concerns: It's not intended for production use due to security limitations.
     * Scalability Issues: It's not suitable for large datasets or high-traffic applications.
+
+### options API
+* The Options API is the traditional way of defining Vue.js components. It involves using a JavaScript object with specific properties to encapsulate a component's behavior and structure. This object contains various properties that specify different aspects of the component's functionality.
+* Key Properties:
+  * data: This property defines the reactive data state of the component. Any changes to properties within the data object will trigger a re-render of the component's template.
+  * template: This property defines the HTML-like template structure that represents the component's visual output. You can use Vue.js directives and expressions within the template to dynamically bind data and handle user interactions.
+  * methods: This property defines methods (functions) that can be used within the component's template or logic. These methods can perform actions, manipulate data, or interact with external APIs.
+  * computed: This property defines computed properties, which are derived values based on other data properties within the component. Computed properties are automatically re-evaluated whenever their dependencies change, ensuring the displayed value is always up-to-date.
+  * Lifecycle Hooks (Optional): These are special functions that can be defined within the component options object to hook into specific stages of a component's lifecycle (e.g., mounted, created, updated).
+```
+  export default {
+    data() {
+      return {
+        // Initial message
+        message: "Hello from Vue!",
+        // Counter value (reactive)
+        count: 0,
+      };
+    },
+    template: `
+      <div>
+        <p>{{ message }}</p>
+        <button @click="incrementCount">Count: {{ count }}</button>
+        <p>Doubled Count: {{ doubledCount }}</p>
+      </div>
+    `,
+    methods: {
+      incrementCount() {
+        this.count++;
+      },
+    },
+    computed: {
+      doubledCount() {
+        // Return the count multiplied by 2
+        return this.count * 2;
+      },
+    },
+    mounted() {
+      console.log("Component is mounted!");
+    },
+  };
+```
+
+
