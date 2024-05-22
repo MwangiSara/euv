@@ -15,6 +15,8 @@ export default {
   setup(){
     //always output first befor created and mounted
     console.log('setup')
+
+    const p =
     
     let name = 'Sarah'
     let age = 30
