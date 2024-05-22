@@ -192,3 +192,43 @@ export default {
 | Execution Timing    | Synchronous       | Synchronous after creation      |
 | Access to DOM    | No direct DOM access     | Limited DOM access (might be discouraged)     |
 
+### Refs
+* Refs (short for references) are a core concept in Vue.js for creating reactive references to DOM elements or JavaScript values. They provide a way to directly access and manipulate these elements or values within your components.
+* Key Characteristics:
+
+    1. Reactivity: Refs are reactive, meaning changes to the value they hold will trigger a re-render of the component's template if used within it.
+    2. Creation: You can create refs using the ref function provided by Vue. You can either call it directly or use it as an attribute in your template.
+    3. Accessing Refs:
+        - Template: Use the ref name prefixed with $refs to access the element or value within the template.
+        - JavaScript: Access the ref value directly using the ref object returned by the ref function.
+#### Creating Refs:
+1. Using ref function:
+    ```
+        const myRef = ref(null); // Create an empty ref
+        const someValue = ref('Initial value'); // Ref holding a string
+    ```
+2. Using ref attribute in template:
+```
+<input ref="myInput">
+
+<script>
+export default {
+  setup() {
+    const myInputRef = ref(null);
+    return { myInputRef };
+  }
+}
+</script>
+
+```
+#### Accessing Refs:
+1. In Template:
+```
+<button @click="$refs.myButton.focus()">Focus Button</button>
+```
+2. In JavaScript:
+```
+myRef.value = someNewElement; // Assigning a new DOM element to the ref
+
+console.log(someValue.value); // Accessing the current value of the ref
+```
