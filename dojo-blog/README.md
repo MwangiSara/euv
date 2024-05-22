@@ -133,3 +133,62 @@ Reactive state (message, count) and functions (incrementCount) are defined direc
 The computed property doubledCount is defined using computed.
 The template remains similar, referencing the reactive state and computed property.
 
+### setup() and created()
+1. setup() (Composition API):
+* Introduced in Vue 3.
+* The setup function is the entry point for defining component logic in the Composition API. It's where you declare reactive state, define functions (methods), and create computed properties using functions like ref, reactive, and computed provided by Vue.
+```
+<script setup>
+import { ref } from 'vue';
+
+const message = ref('Hello from Vue!');
+const count = ref(0);
+
+const incrementCount = () => {
+  count.value++;
+};
+
+const doubledCount = computed(() => count.value * 2);
+
+return { message, count, incrementCount, doubledCount };
+</script>
+
+<template>
+  <div>
+    <p>{{ message }}</p>
+    <button @click="incrementCount">Count: {{ count }}</button>
+    <p>Doubled Count: {{ doubledCount }}</p>
+  </div>
+</template>
+
+```
+2. created() (Options API):
+* The created hook is called synchronously after the component has been created (before mounting). It's a good place to perform actions that need to be done before the component is inserted into the DOM, such as fetching initial data from an API.
+```
+export default {
+  data() {
+    return {
+      message: 'Hello from Vue!',
+      items: [],
+    };
+  },
+  created() {
+    fetch('https://api.example.com/items')
+      .then(response => response.json())
+      .then(data => {
+        this.items = data;
+      })
+      .catch(error => console.error(error));
+  },
+  // ... other options
+};
+
+```
+| **Feature** | **setup() (Composition API)** | **created() (Options API)** |
+| :---         |     :---:      |          ---: |
+|   Context   | Composition API     | Options API    |
+| Purpose    | Define reactive state, methods, computed properties       | Perform actions before mounting      |
+| Usage    | Within <script setup> tag       | Within options object      |
+| Execution Timing    | Synchronous       | Synchronous after creation      |
+| Access to DOM    | No direct DOM access     | Limited DOM access (might be discouraged)     |
+
