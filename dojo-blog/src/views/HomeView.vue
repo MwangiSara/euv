@@ -1,16 +1,34 @@
 <template>
   <div class="home">
+    <h1>home</h1>
+    <h2>refs</h2>
     <p ref="p">My name is {{ name }}, I'm {{ age }} years old</p>
     <button @click="handleClick"> Click Me</button>
     <p>My name is {{ name2 }}, I'm {{ age2 }} years old</p>
     <button @click="handleClick2"> Click Me2</button><br>
     <button @click="age2++">Increase Age</button><br>
     <input type="text" v-model="name2" placeholder=""> <!-- change Mell to another name using v-model -->
+    <br><br>
+    <p>My location is {{ ninjaone.location }}, I'm {{ ninjaone.height }} tall</p>
+    <button @click="updateNinjaOne">change height</button><br>
+
+    <h2>reactive</h2>
+    <p>My location is {{ ninjatwo.location }}, I'm {{ ninjatwo.height }} tall</p>
+    <button @click="updateNinjaTwo">change height</button><br>
+
+    <h2>Computed()</h2>
+    <input type="text" v-model="search" placeholder="search for cities">
+    <p>Search term - {{  search }}</p>
+    <button @click="stopingWatch">stop watch</button>
+    <div v-for="city in matchingCities" :key="city">
+      {{ city }}
+    </div>
+
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, reactive, computed, watch, watchEffect } from 'vue';
 
 // @ is an alias to /src
 
@@ -44,7 +62,46 @@ export default {
       age2.value = 55
     }
 
-    return {name, age, handleClick,p, name2, age2, handleClick2}
+
+    //seeing the difference between refs and reactive
+  const ninjaone = ref({ height: 300, location: "Nairobi"})
+  const ninjatwo = reactive({height: 200, location: "Kakamega"})
+  
+  const updateNinjaOne= () => {
+    ninjaone.value.height =400
+  }
+  const updateNinjaTwo= () => {
+    //we dont need to use the value property using reactive like in ref, we access the properties directly
+    ninjatwo.height=100
+  }
+
+
+  // creating computed function
+  const cities = ref(['Mombasa', 'Kisumu', 'Nairobi', 'Eldoret'])
+  const search = ref('')
+
+  //creating a watch, so we are watching the saerch ref and a function which will fire everytime a saerch ref changes
+  const stopWatch = watch(search, () => {
+    console.log('watch function run')
+  })
+  //creating watcheffect. it runs initially when the component first loads
+  const stopEffect = watchEffect(() => {
+    console.log('watcheffect function run',search.value)
+  })
+
+  // creating a computed property which will return an updated array based on a search term 
+  const matchingCities = computed(() => {
+    return cities.value.filter((name) => name.includes(search.value))
+  })
+
+  //stop watch, const stopWatch equals to a function that stops watch and watch effect
+  const stopingWatch = () => {
+    stopWatch()
+    stopEffect()
+  }
+  
+
+    return {name, age, handleClick,p, name2, age2, handleClick2, ninjaone, updateNinjaOne,ninjatwo,updateNinjaTwo, cities, search, matchingCities, stopingWatch} 
   },
   created(){
     console.log('created')

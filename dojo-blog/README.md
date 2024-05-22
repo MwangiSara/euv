@@ -232,3 +232,59 @@ myRef.value = someNewElement; // Assigning a new DOM element to the ref
 
 console.log(someValue.value); // Accessing the current value of the ref
 ```
+
+### Reactive()
+*  Creates a reactive object. Any changes to the properties within the object will trigger a re-render.
+```
+import { reactive } from 'vue';
+
+const person = reactive({
+  firstName: 'John',
+  lastName: 'Doe',
+});
+
+// Later
+person.firstName = 'Jane'; // Update a property within the reactive object
+
+```
+| **Feature** | **ref** | **reactive** |
+| :---         |     :---:      |          ---: |
+|   Purpose   | Creates a reactive reference to a single value     | Creates a reactive object    |
+| Data Type    | Primitive values (strings, numbers, booleans), objects       | Objects (with potential nested properties)      |
+| Reactivity Depth    | Tracks changes to the referenced value       | Deep reactivity - tracks changes to all properties      |
+| Use Cases    | Single values, DOM element references       | Complex data structures      |
+
+
+### what is computed()
+* the computed function is used to define derived properties within your components. These derived properties are not directly stored in the component's data but are calculated based on other reactive data properties. 
+```
+export default {
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  computed: {
+    doubledCount() {
+      return this.count * 2;
+    },
+  },
+  // ... other options
+};
+
+```
+
+###  watch and watcheffect
+* Both watch (Options API) and watchEffect (Composition API) are functionalities in Vue.js used to track changes in reactive data and execute side effects in response to those changes.
+1. **watch (Options API)**: Monitors specific reactive data properties and executes a callback function whenever the value of those properties changes. Defined within the watch property of your component's options object.
+```
+watch: {
+  // Property to watch: callback function
+  someProperty(newValue, oldValue) {
+    // Code to execute when the property changes
+  },
+  // You can watch multiple properties using separate entries
+},
+```
+2. **watchEffect (Composition API)**: Similar to watch, it tracks changes in reactive data but uses a more functional approach. Defined as a function within the <script setup> tag or setup()
+
