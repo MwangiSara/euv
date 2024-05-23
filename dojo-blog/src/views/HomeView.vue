@@ -1,5 +1,55 @@
 <template>
   <div class="home">
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length"><PostsList :posts="posts" /></div>
+    <div v-else>Loading...</div>
+    <!-- <button @click="showposts = !showposts">Toggle Posts</button> -->
+    <!-- <button @click="posts.pop()">delete Posts</button> pop removes one item in an array -->
+  </div>
+</template>
+
+<script>
+import getPosts from '@/composables/getPosts';
+import PostsList from '@/components/PostsList.vue'
+
+export default {
+  name: 'HomeView',
+
+  setup(){ 
+    const {posts, error, load} = getPosts()
+    
+    load() //envoking the load function
+    // const showposts = ref(true)
+    return { posts, error }
+  },
+  components: { PostsList }, 
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+  <div class="home">
     <h1>home</h1>
     <h2>refs</h2>
     <p ref="p">My name is {{ name }}, I'm {{ age }} years old</p>
@@ -7,8 +57,8 @@
     <p>My name is {{ name2 }}, I'm {{ age2 }} years old</p>
     <button @click="handleClick2"> Click Me2</button><br>
     <button @click="age2++">Increase Age</button><br>
-    <input type="text" v-model="name2" placeholder=""> <!-- change Mell to another name using v-model -->
-    <br><br>
+    <input type="text" v-model="name2" placeholder="">  change Mell to another name using v-model -->
+    <!-- <br><br>
     <p>My location is {{ ninjaone.location }}, I'm {{ ninjaone.height }} tall</p>
     <button @click="updateNinjaOne">change height</button><br>
 
@@ -25,10 +75,10 @@
     </div>
 
   </div>
-</template>
+</template> -->
 
-<script>
-import { ref, reactive, computed, watch, watchEffect } from 'vue';
+<!-- <script>
+import { ref, reactive, computed, watch, watchEffect } from 'vue'; -->
 
 // @ is an alias to /src
 
@@ -110,4 +160,4 @@ export default {
     console.log("mounted")
   }
 }
-</script>
+<!-- </script> -->

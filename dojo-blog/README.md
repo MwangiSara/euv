@@ -288,3 +288,42 @@ watch: {
 ```
 2. **watchEffect (Composition API)**: Similar to watch, it tracks changes in reactive data but uses a more functional approach. Defined as a function within the <script setup> tag or setup()
 
+### Async and Await
+* Async/await is a powerful combination of keywords used in JavaScript (introduced in ES2017) to handle asynchronous operations in a more synchronous-like manner. 
+*  The async keyword is used before the function keyword when defining an asynchronous function. It marks the function as asynchronous, meaning it can perform operations that might take time to complete (like network requests, file I/O, etc.) without blocking the main thread execution.An asynchronous function always returns a Promise object, even if it doesn't explicitly use the return statement.
+* The await keyword can only be used within an async function. It pauses the execution of the async function at that point until the Promise returned by the awaited expression (like an API call) resolves or rejects. If the Promise resolves, the await expression returns the resolved value. If the Promise rejects, the await expression throws an error. 
+* After the awaited expression settles (resolves or rejects), the async function continues execution from the line after the await.
+*  Compared to traditional Promise-based code with .then and .catch chains, async/await makes asynchronous code appear more synchronous and easier to read.
+```
+async function fetchData() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  return data;
+}
+
+fetchData()
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+```
+* `fetchData` is an async function that fetches data from an API. `await fetch(...)` pauses the function until the fetch completes and returns the response object. `await response.json()` pauses again until the response is converted to JSON and returns the parsed data. The `then` and `catch` are used at the end to handle the resolved data or any errors.
+### synchronous and asynchronous 
+* A synchronous function executes line by line in a sequential manner. It doesn't perform any operations that might take time to complete (like waiting for network requests or user input) until the current line finishes execution. The main thread is blocked while the synchronous function is running, meaning the browser or JavaScript engine can't process anything else until the function finishes.
+* An asynchronous function can perform operations that take time to complete without blocking the main thread. It typically uses mechanisms like callbacks or Promises to handle the completion of these long-running operations at a later time. The main thread can continue processing other tasks while the asynchronous operation is ongoing.
+```
+// Synchronous (blocks main thread)
+function getDataSync() {
+  // Simulate a long-running operation (e.g., network request)
+  for (let i = 0; i < 1000000; i++) {}
+  return "Data from synchronous function";
+}
+
+// Asynchronous (non-blocking)
+async function getDataAsync() {
+  // Simulate an asynchronous operation (e.g., fetch API call)
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  return data;
+}
+
+```
